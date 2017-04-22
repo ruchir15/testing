@@ -1,0 +1,22 @@
+var http = require("http");
+var os = require('os');
+var counter = 0;
+http.createServer(function (request, response) {
+
+   // Send the HTTP header
+   // HTTP Status: 200 : OK
+   // Content Type: text/plain
+   response.writeHead(200, {'Content-Type': 'text/plain'});
+   
+   console.log("\ncounter before" + counter);
+   counter = counter + 1;
+   var hostname = os.hostname();
+   response.write("\n The version is : V1");
+   response.write('\n\n Hostname from where app is being served is : ' + hostname );
+   console.log("\nCounter after : " + counter);
+   response.end("\n Counter : " + counter);
+   console.log("\nCounter after response end: " + counter);
+}).listen(3000);
+
+// Console will print the message
+console.log('Server running at http://127.0.0.1:3000/');
